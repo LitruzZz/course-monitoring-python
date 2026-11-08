@@ -1,0 +1,274 @@
+ЛР16. Варіант 8. Музейний фонд
+{"python": "3.12.14", "django": "6.1.2", "flask": "3.1.3", "sqlite": "3.53.1"}
+
+python manage.py makemigrations monitoring
+Migrations for 'monitoring':
+  monitoring\migrations\0001_initial.py
+    + Create model Device
+
+python manage.py migrate --noinput
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, monitoring, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying monitoring.0001_initial... OK
+  Applying sessions.0001_initial... OK
+
+python manage.py showmigrations
+admin
+ [X] 0001_initial
+ [X] 0002_logentry_remove_auto_add
+ [X] 0003_logentry_add_action_flag_choices
+auth
+ [X] 0001_initial
+ [X] 0002_alter_permission_name_max_length
+ [X] 0003_alter_user_email_max_length
+ [X] 0004_alter_user_username_opts
+ [X] 0005_alter_user_last_login_null
+ [X] 0006_require_contenttypes_0002
+ [X] 0007_alter_validators_add_error_messages
+ [X] 0008_alter_user_username_max_length
+ [X] 0009_alter_user_last_name_max_length
+ [X] 0010_alter_group_name_max_length
+ [X] 0011_update_proxy_permissions
+ [X] 0012_alter_user_first_name_max_length
+contenttypes
+ [X] 0001_initial
+ [X] 0002_remove_content_type_name
+monitoring
+ [X] 0001_initial
+sessions
+ [X] 0001_initial
+
+python manage.py check
+System check identified no issues (0 silenced).
+
+python manage.py test monitoring -v 2
+Found 18 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: messages, staticfiles
+  Apply all migrations: admin, auth, contenttypes, monitoring, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying monitoring.0001_initial... OK
+  Applying sessions.0001_initial... OK
+System check identified no issues (0 silenced).
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+
+test_admin_crud_and_duplicate (monitoring.tests.AdminTests.test_admin_crud_and_duplicate) ... ok
+test_admin_search (monitoring.tests.AdminTests.test_admin_search) ... ok
+test_anonymous (monitoring.tests.AdminTests.test_anonymous) ... ok
+test_regular_user (monitoring.tests.AdminTests.test_regular_user) ... ok
+test_staff_without_permissions (monitoring.tests.AdminTests.test_staff_without_permissions) ... ok
+test_superuser_admin (monitoring.tests.AdminTests.test_superuser_admin) ... ok
+test_empty_and_whitespace_query (monitoring.tests.DeviceTests.test_empty_and_whitespace_query) ... ok
+test_empty_database (monitoring.tests.DeviceTests.test_empty_database) ... ok
+test_escaping (monitoring.tests.DeviceTests.test_escaping) ... ok
+test_index_and_detail (monitoring.tests.DeviceTests.test_index_and_detail) ... ok
+test_model_and_reverse (monitoring.tests.DeviceTests.test_model_and_reverse) ... ok
+test_no_match_and_ukrainian (monitoring.tests.DeviceTests.test_no_match_and_ukrainian) ... ok
+test_not_found (monitoring.tests.DeviceTests.test_not_found) ... ok
+test_post_with_valid_csrf (monitoring.tests.DeviceTests.test_post_with_valid_csrf) ... ok
+test_safe_methods (monitoring.tests.DeviceTests.test_safe_methods) ... ok
+test_search_profile (monitoring.tests.DeviceTests.test_search_profile) ... ok
+test_unique_serial (monitoring.tests.DeviceTests.test_unique_serial) ... ok
+test_validation_limits (monitoring.tests.DeviceTests.test_validation_limits) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 1.735s
+
+OK
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+
+
+Фактичний HTTP-протокол
+[
+  {
+    "method": "GET",
+    "path": "/",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "serials": [
+      "V08-A",
+      "V08-B",
+      "V08-C"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/?q=",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "serials": [
+      "V08-A",
+      "V08-B",
+      "V08-C"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/?q=%D0%A4%D0%BE%D0%BD%D0%B4",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "serials": [
+      "V08-A",
+      "V08-B"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/?q=%D0%BD%D0%B5%D1%96%D1%81%D0%BD%D1%83%D1%8E%D1%87%D0%B8%D0%B9-%D0%B7%D1%80%D0%B0%D0%B7%D0%BE%D0%BA",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "serials": []
+  },
+  {
+    "method": "GET",
+    "path": "/?q=%D1%82%D0%BA%D0%B0%D0%BD",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "serials": [
+      "V08-A"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/devices/1/",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "serials": [
+      "V08-A"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/devices/99999/",
+    "status": 404,
+    "content_type": "text/html; charset=utf-8",
+    "serials": []
+  },
+  {
+    "method": "GET",
+    "path": "/devices/wrong/",
+    "status": 404,
+    "content_type": "text/html; charset=utf-8",
+    "serials": []
+  },
+  {
+    "method": "GET",
+    "path": "/admin/",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "serials": [],
+    "redirect_to_login": true
+  },
+  {
+    "method": "POST",
+    "path": "/",
+    "csrf": "коректний токен",
+    "status": 405,
+    "allow": "GET, HEAD"
+  },
+  {
+    "framework": "Flask",
+    "method": "GET",
+    "path": "/",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8"
+  },
+  {
+    "framework": "Flask",
+    "method": "GET",
+    "path": "/devices/1",
+    "status": 200,
+    "content_type": "application/json"
+  },
+  {
+    "framework": "Flask",
+    "method": "GET",
+    "path": "/devices/wrong",
+    "status": 404,
+    "content_type": "text/html; charset=utf-8"
+  }
+]
+Перевірки браузера
+Три Device додано через admin
+Пошук Фонд → V08-A, V08-B
+Детальна сторінка V08-A
+404 для ID 99999
+Повторний serial відхилено формою
+lab_user не має доступу до admin
+
+Чиста копія без БД: migrate → loaddata → check → відсутність незаписаних змін моделей
+python manage.py migrate --noinput
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, monitoring, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying monitoring.0001_initial... OK
+  Applying sessions.0001_initial... OK
+
+python manage.py loaddata profile08_devices
+Installed 3 object(s) from 1 fixture(s)
+
+python manage.py check
+System check identified no issues (0 silenced).
+
+python manage.py makemigrations --check --dry-run
+No changes detected
+
+python manage.py shell -c from monitoring.models import Device; print(list(Device.objects.order_by("serial").values_list("name","serial")))
+13 objects imported automatically (use -v 2 for details).
+
+[('Фонд тканини', 'V08-A'), ('Фонд дерево', 'V08-B'), ('Вестибюль', 'V08-C')]

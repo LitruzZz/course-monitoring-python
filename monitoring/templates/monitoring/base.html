@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Музейний фонд{% endblock %}</title>
+  <style>
+    body { margin:0; background:#f5f6f8; color:#182330; font:17px/1.6 system-ui,sans-serif; }
+    main { max-width:850px; margin:48px auto; padding:32px; background:white; border-radius:12px; }
+    nav { display:flex; gap:24px; margin-bottom:24px; }
+    a { color:#1459a5; } h1 { margin:0 0 8px; } p { margin:8px 0 20px; }
+    form { display:flex; gap:12px; margin:24px 0; } input { flex:1; min-width:0; }
+    input,button { font:inherit; padding:10px 14px; border:1px solid #9aabba; border-radius:6px; }
+    button { background:#1459a5; color:white; cursor:pointer; }
+    table { width:100%; border-collapse:collapse; } th,td { padding:14px 8px; text-align:left; border-bottom:1px solid #dbe1e7; }
+    .muted { color:#526173; } label { display:block; font-weight:600; }
+  </style>
+</head>
+<body><main>
+  <nav><a href="{% url 'monitoring:index' %}">Усі пристрої</a><a href="{% url 'admin:index' %}">Адміністрування</a></nav>
+  {% block content %}{% endblock %}
+</main></body>
+</html>

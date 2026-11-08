@@ -1,0 +1,107 @@
+{
+  "variant": 8,
+  "scenario": "Музейний фонд",
+  "devices": [
+    {
+      "name": "Фонд тканини",
+      "serial": "V08-A"
+    },
+    {
+      "name": "Фонд дерево",
+      "serial": "V08-B"
+    },
+    {
+      "name": "Вестибюль",
+      "serial": "V08-C"
+    }
+  ],
+  "passports": [
+    {
+      "serial": "V08-A",
+      "location": "Секція тканини"
+    },
+    {
+      "serial": "V08-B",
+      "location": "Секція дерева"
+    }
+  ],
+  "tags": [
+    "Експонати",
+    "Збереження",
+    "Резерв"
+  ],
+  "device_tags": {
+    "V08-A": [
+      "Експонати",
+      "Збереження"
+    ],
+    "V08-B": [
+      "Експонати"
+    ],
+    "V08-C": [
+      "Резерв"
+    ]
+  },
+  "measurements": [
+    {
+      "serial": "V08-A",
+      "temperature": "17.00",
+      "measured_at": "2026-10-08T08:00:00+00:00"
+    },
+    {
+      "serial": "V08-A",
+      "temperature": "19.00",
+      "measured_at": "2026-10-08T08:30:00+00:00"
+    },
+    {
+      "serial": "V08-A",
+      "temperature": "18.00",
+      "measured_at": "2026-10-08T09:00:00+00:00"
+    },
+    {
+      "serial": "V08-A",
+      "temperature": "22.00",
+      "measured_at": "2026-10-08T09:30:00+00:00"
+    },
+    {
+      "serial": "V08-A",
+      "temperature": "20.00",
+      "measured_at": "2026-10-08T10:00:00+00:00"
+    },
+    {
+      "serial": "V08-B",
+      "temperature": "19.00",
+      "measured_at": "2026-10-08T08:00:00+00:00"
+    },
+    {
+      "serial": "V08-B",
+      "temperature": "18.00",
+      "measured_at": "2026-10-08T08:30:00+00:00"
+    },
+    {
+      "serial": "V08-B",
+      "temperature": "21.00",
+      "measured_at": "2026-10-08T09:00:00+00:00"
+    },
+    {
+      "serial": "V08-B",
+      "temperature": "23.00",
+      "measured_at": "2026-10-08T09:30:00+00:00"
+    },
+    {
+      "serial": "V08-B",
+      "temperature": "20.00",
+      "measured_at": "2026-10-08T10:00:00+00:00"
+    }
+  ],
+  "search": {
+    "q": "Фонд",
+    "expected_serials": [
+      "V08-A",
+      "V08-B"
+    ],
+    "no_match": "неіснуючий-зразок"
+  },
+  "threshold": "21",
+  "extra_criterion": "На сторінці пристрою показуйте розмах max(temperature) − min(temperature). Для відсутніх вимірювань показуйте «немає даних», не 0."
+}

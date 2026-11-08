@@ -1,0 +1,8 @@
+{% extends "monitoring/base.html" %}
+{% block title %}{{ device.name }} — Музейний фонд{% endblock %}
+{% block content %}
+<h1>{{ device.name }}</h1>
+<p class="muted">Навчальний пристрій</p>
+<dl><dt>Серійний номер</dt><dd>{{ device.serial }}</dd></dl>
+<p><a href="{% url 'monitoring:index' %}">Повернутися до переліку</a></p>
+{% endblock %}

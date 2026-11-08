@@ -1,0 +1,251 @@
+{
+  "stage": 16,
+  "variant": 8,
+  "versions": {
+    "python": "3.12.14",
+    "django": "6.1.2",
+    "flask": "3.1.3",
+    "sqlite": "3.53.1"
+  },
+  "http": [
+    {
+      "method": "GET",
+      "path": "/",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "serials": [
+        "V08-A",
+        "V08-B",
+        "V08-C"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/?q=",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "serials": [
+        "V08-A",
+        "V08-B",
+        "V08-C"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/?q=%D0%A4%D0%BE%D0%BD%D0%B4",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "serials": [
+        "V08-A",
+        "V08-B"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/?q=%D0%BD%D0%B5%D1%96%D1%81%D0%BD%D1%83%D1%8E%D1%87%D0%B8%D0%B9-%D0%B7%D1%80%D0%B0%D0%B7%D0%BE%D0%BA",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "serials": []
+    },
+    {
+      "method": "GET",
+      "path": "/?q=%D1%82%D0%BA%D0%B0%D0%BD",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "serials": [
+        "V08-A"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/devices/1/",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "serials": [
+        "V08-A"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/devices/99999/",
+      "status": 404,
+      "content_type": "text/html; charset=utf-8",
+      "serials": []
+    },
+    {
+      "method": "GET",
+      "path": "/devices/wrong/",
+      "status": 404,
+      "content_type": "text/html; charset=utf-8",
+      "serials": []
+    },
+    {
+      "method": "GET",
+      "path": "/admin/",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "serials": [],
+      "redirect_to_login": true
+    },
+    {
+      "method": "POST",
+      "path": "/",
+      "csrf": "коректний токен",
+      "status": 405,
+      "allow": "GET, HEAD"
+    },
+    {
+      "framework": "Flask",
+      "method": "GET",
+      "path": "/",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "framework": "Flask",
+      "method": "GET",
+      "path": "/devices/1",
+      "status": 200,
+      "content_type": "application/json"
+    },
+    {
+      "framework": "Flask",
+      "method": "GET",
+      "path": "/devices/wrong",
+      "status": 404,
+      "content_type": "text/html; charset=utf-8"
+    }
+  ],
+  "tables": [
+    "auth_group",
+    "auth_group_permissions",
+    "auth_permission",
+    "auth_user",
+    "auth_user_groups",
+    "auth_user_user_permissions",
+    "django_admin_log",
+    "django_content_type",
+    "django_migrations",
+    "django_session",
+    "monitoring_device",
+    "sqlite_sequence"
+  ],
+  "device_columns": [
+    [
+      0,
+      "id",
+      "INTEGER",
+      1,
+      null,
+      1
+    ],
+    [
+      1,
+      "name",
+      "varchar(80)",
+      1,
+      null,
+      0
+    ],
+    [
+      2,
+      "serial",
+      "varchar(40)",
+      1,
+      null,
+      0
+    ]
+  ],
+  "device_schema": "CREATE TABLE \"monitoring_device\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"name\" varchar(80) NOT NULL, \"serial\" varchar(40) NOT NULL UNIQUE)",
+  "devices": [
+    [
+      1,
+      "Фонд тканини",
+      "V08-A"
+    ],
+    [
+      2,
+      "Фонд дерево",
+      "V08-B"
+    ],
+    [
+      3,
+      "Вестибюль",
+      "V08-C"
+    ]
+  ],
+  "learning_users_flags": [
+    [
+      "lab_admin",
+      1,
+      1,
+      1
+    ],
+    [
+      "lab_user",
+      1,
+      0,
+      0
+    ]
+  ],
+  "tests": [
+    {
+      "command": "python manage.py makemigrations monitoring",
+      "result": "Migrations for 'monitoring':\n  monitoring\\migrations\\0001_initial.py\n    + Create model Device\n",
+      "returncode": 0
+    },
+    {
+      "command": "python manage.py migrate --noinput",
+      "result": "Operations to perform:\n  Apply all migrations: admin, auth, contenttypes, monitoring, sessions\nRunning migrations:\n  Applying contenttypes.0001_initial... OK\n  Applying auth.0001_initial... OK\n  Applying admin.0001_initial... OK\n  Applying admin.0002_logentry_remove_auto_add... OK\n  Applying admin.0003_logentry_add_action_flag_choices... OK\n  Applying contenttypes.0002_remove_content_type_name... OK\n  Applying auth.0002_alter_permission_name_max_length... OK\n  Applying auth.0003_alter_user_email_max_length... OK\n  Applying auth.0004_alter_user_username_opts... OK\n  Applying auth.0005_alter_user_last_login_null... OK\n  Applying auth.0006_require_contenttypes_0002... OK\n  Applying auth.0007_alter_validators_add_error_messages... OK\n  Applying auth.0008_alter_user_username_max_length... OK\n  Applying auth.0009_alter_user_last_name_max_length... OK\n  Applying auth.0010_alter_group_name_max_length... OK\n  Applying auth.0011_update_proxy_permissions... OK\n  Applying auth.0012_alter_user_first_name_max_length... OK\n  Applying monitoring.0001_initial... OK\n  Applying sessions.0001_initial... OK\n",
+      "returncode": 0
+    },
+    {
+      "command": "python manage.py showmigrations",
+      "result": "admin\n [X] 0001_initial\n [X] 0002_logentry_remove_auto_add\n [X] 0003_logentry_add_action_flag_choices\nauth\n [X] 0001_initial\n [X] 0002_alter_permission_name_max_length\n [X] 0003_alter_user_email_max_length\n [X] 0004_alter_user_username_opts\n [X] 0005_alter_user_last_login_null\n [X] 0006_require_contenttypes_0002\n [X] 0007_alter_validators_add_error_messages\n [X] 0008_alter_user_username_max_length\n [X] 0009_alter_user_last_name_max_length\n [X] 0010_alter_group_name_max_length\n [X] 0011_update_proxy_permissions\n [X] 0012_alter_user_first_name_max_length\ncontenttypes\n [X] 0001_initial\n [X] 0002_remove_content_type_name\nmonitoring\n [X] 0001_initial\nsessions\n [X] 0001_initial\n",
+      "returncode": 0
+    },
+    {
+      "command": "python manage.py check",
+      "result": "System check identified no issues (0 silenced).\n",
+      "returncode": 0
+    },
+    {
+      "command": "python manage.py test monitoring -v 2",
+      "result": "Found 18 test(s).\nOperations to perform:\n  Synchronize unmigrated apps: messages, staticfiles\n  Apply all migrations: admin, auth, contenttypes, monitoring, sessions\nSynchronizing apps without migrations:\n  Creating tables...\n    Running deferred SQL...\nRunning migrations:\n  Applying contenttypes.0001_initial... OK\n  Applying auth.0001_initial... OK\n  Applying admin.0001_initial... OK\n  Applying admin.0002_logentry_remove_auto_add... OK\n  Applying admin.0003_logentry_add_action_flag_choices... OK\n  Applying contenttypes.0002_remove_content_type_name... OK\n  Applying auth.0002_alter_permission_name_max_length... OK\n  Applying auth.0003_alter_user_email_max_length... OK\n  Applying auth.0004_alter_user_username_opts... OK\n  Applying auth.0005_alter_user_last_login_null... OK\n  Applying auth.0006_require_contenttypes_0002... OK\n  Applying auth.0007_alter_validators_add_error_messages... OK\n  Applying auth.0008_alter_user_username_max_length... OK\n  Applying auth.0009_alter_user_last_name_max_length... OK\n  Applying auth.0010_alter_group_name_max_length... OK\n  Applying auth.0011_update_proxy_permissions... OK\n  Applying auth.0012_alter_user_first_name_max_length... OK\n  Applying monitoring.0001_initial... OK\n  Applying sessions.0001_initial... OK\nSystem check identified no issues (0 silenced).\nCreating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...\n\ntest_admin_crud_and_duplicate (monitoring.tests.AdminTests.test_admin_crud_and_duplicate) ... ok\ntest_admin_search (monitoring.tests.AdminTests.test_admin_search) ... ok\ntest_anonymous (monitoring.tests.AdminTests.test_anonymous) ... ok\ntest_regular_user (monitoring.tests.AdminTests.test_regular_user) ... ok\ntest_staff_without_permissions (monitoring.tests.AdminTests.test_staff_without_permissions) ... ok\ntest_superuser_admin (monitoring.tests.AdminTests.test_superuser_admin) ... ok\ntest_empty_and_whitespace_query (monitoring.tests.DeviceTests.test_empty_and_whitespace_query) ... ok\ntest_empty_database (monitoring.tests.DeviceTests.test_empty_database) ... ok\ntest_escaping (monitoring.tests.DeviceTests.test_escaping) ... ok\ntest_index_and_detail (monitoring.tests.DeviceTests.test_index_and_detail) ... ok\ntest_model_and_reverse (monitoring.tests.DeviceTests.test_model_and_reverse) ... ok\ntest_no_match_and_ukrainian (monitoring.tests.DeviceTests.test_no_match_and_ukrainian) ... ok\ntest_not_found (monitoring.tests.DeviceTests.test_not_found) ... ok\ntest_post_with_valid_csrf (monitoring.tests.DeviceTests.test_post_with_valid_csrf) ... ok\ntest_safe_methods (monitoring.tests.DeviceTests.test_safe_methods) ... ok\ntest_search_profile (monitoring.tests.DeviceTests.test_search_profile) ... ok\ntest_unique_serial (monitoring.tests.DeviceTests.test_unique_serial) ... ok\ntest_validation_limits (monitoring.tests.DeviceTests.test_validation_limits) ... ok\n\n----------------------------------------------------------------------\nRan 18 tests in 1.735s\n\nOK\nDestroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...\n\n",
+      "returncode": 0
+    }
+  ],
+  "browser_review": [
+    "Три Device додано через admin",
+    "Пошук Фонд → V08-A, V08-B",
+    "Детальна сторінка V08-A",
+    "404 для ID 99999",
+    "Повторний serial відхилено формою",
+    "lab_user не має доступу до admin"
+  ],
+  "github_repository": "https://github.com/LitruzZz/course-monitoring-python-2026",
+  "github_commit": null,
+  "github_status": "Потрібне завантаження змін ЛР16 і посилання на фактичний віддалений коміт",
+  "fresh_database_reproduction": [
+    {
+      "command": "python manage.py migrate --noinput",
+      "result": "Operations to perform:\n  Apply all migrations: admin, auth, contenttypes, monitoring, sessions\nRunning migrations:\n  Applying contenttypes.0001_initial... OK\n  Applying auth.0001_initial... OK\n  Applying admin.0001_initial... OK\n  Applying admin.0002_logentry_remove_auto_add... OK\n  Applying admin.0003_logentry_add_action_flag_choices... OK\n  Applying contenttypes.0002_remove_content_type_name... OK\n  Applying auth.0002_alter_permission_name_max_length... OK\n  Applying auth.0003_alter_user_email_max_length... OK\n  Applying auth.0004_alter_user_username_opts... OK\n  Applying auth.0005_alter_user_last_login_null... OK\n  Applying auth.0006_require_contenttypes_0002... OK\n  Applying auth.0007_alter_validators_add_error_messages... OK\n  Applying auth.0008_alter_user_username_max_length... OK\n  Applying auth.0009_alter_user_last_name_max_length... OK\n  Applying auth.0010_alter_group_name_max_length... OK\n  Applying auth.0011_update_proxy_permissions... OK\n  Applying auth.0012_alter_user_first_name_max_length... OK\n  Applying monitoring.0001_initial... OK\n  Applying sessions.0001_initial... OK\n"
+    },
+    {
+      "command": "python manage.py loaddata profile08_devices",
+      "result": "Installed 3 object(s) from 1 fixture(s)\n"
+    },
+    {
+      "command": "python manage.py check",
+      "result": "System check identified no issues (0 silenced).\n"
+    },
+    {
+      "command": "python manage.py makemigrations --check --dry-run",
+      "result": "No changes detected\n"
+    },
+    {
+      "command": "python manage.py shell -c from monitoring.models import Device; print(list(Device.objects.order_by(\"serial\").values_list(\"name\",\"serial\")))",
+      "result": "13 objects imported automatically (use -v 2 for details).\n\n[('Фонд тканини', 'V08-A'), ('Фонд дерево', 'V08-B'), ('Вестибюль', 'V08-C')]\n"
+    }
+  ]
+}

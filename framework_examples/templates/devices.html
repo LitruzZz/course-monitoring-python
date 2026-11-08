@@ -1,0 +1,5 @@
+<!doctype html>
+<html lang="uk"><meta charset="utf-8"><title>Пристрої Flask</title>
+<h1>Пристрої</h1><ul>{% for device in devices %}
+<li><a href="{{ url_for('detail', device_id=device.id) }}">{{ device.name }}</a></li>
+{% endfor %}</ul></html>

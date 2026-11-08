@@ -1,0 +1,26 @@
+[
+  {
+    "model": "monitoring.device",
+    "pk": 1,
+    "fields": {
+      "name": "Фонд тканини",
+      "serial": "V08-A"
+    }
+  },
+  {
+    "model": "monitoring.device",
+    "pk": 2,
+    "fields": {
+      "name": "Фонд дерево",
+      "serial": "V08-B"
+    }
+  },
+  {
+    "model": "monitoring.device",
+    "pk": 3,
+    "fields": {
+      "name": "Вестибюль",
+      "serial": "V08-C"
+    }
+  }
+]
